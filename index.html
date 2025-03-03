@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link the CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function validateForm() {
+            let username = document.forms["loginForm"]["username"].value;
+            let password = document.forms["loginForm"]["password"].value;
+            
+            if (username.trim() === "" || password.trim() === "") {
+                alert("Username and Password cannot be empty!");
+                return false;
+            }
+            
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long!");
+                return false;
+            }
+            
+            return true;
+        }
+    </script>
 </head>
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="login.php" method="POST">
+        <form name="loginForm" action="login.php" method="POST" onsubmit="return validateForm()">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
